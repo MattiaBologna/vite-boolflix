@@ -1,27 +1,44 @@
 <script>
-export default {
-    methods: {
-        search() {
-            console.log('object')
+import { store } from '../store.js';
 
-            // svuota l'input
-            this.inputValue = ''
-        }
-    },
+export default {
+
     data() {
         return {
-            inputValue: ''
+            searchInput: '',
+            store
+        }
+    },
+
+    methods: {
+        search() {
+            console.log('Hai cercato: ', this.searchInput)
+
+            // manda nello store il valore dell'input
+            store.searchInput = this.searchInput
+
+            // svuota l'input
+            this.searchInput = ''
         }
     }
+
 }
+
 </script>
+
+
 
 <template>
     <nav class="head__navbar">
         <div class="head__logo">BOOLFLIX</div>
-        <input type="search" class="head__searchbar" v-model="inputValue" @keyup.enter="search">
+        <div class="head__searchbar">
+            <input type="search" class="searchbar__input" v-model="searchInput" @keyup.enter="search">
+            <button @click="search" class="searchbar__button">Cerca</button>
+        </div>
     </nav>
 </template>
+
+
 
 <style lang="scss" scoped>
 .head__navbar {
@@ -35,5 +52,9 @@ export default {
 
 .head__logo {
     font-size: 40px;
+}
+
+.searchbar__button {
+    margin-left: 10px;
 }
 </style>
