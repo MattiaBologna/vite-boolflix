@@ -1,15 +1,27 @@
+<script>
+export default {
+    methods: {
+        search() {
+            console.log('object')
+
+            // svuota l'input
+            this.inputValue = ''
+        }
+    },
+    data() {
+        return {
+            inputValue: ''
+        }
+    }
+}
+</script>
+
 <template>
     <nav class="head__navbar">
         <div class="head__logo">BOOLFLIX</div>
-        <input type="text" class="head__searchbar">
+        <input type="search" class="head__searchbar" v-model="inputValue" @keyup.enter="search">
     </nav>
 </template>
-
-<script>
-export default {
-
-}
-</script>
 
 <style lang="scss" scoped>
 .head__navbar {
