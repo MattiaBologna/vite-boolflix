@@ -14,10 +14,15 @@ export default {
 
 <template>
     <li>
+        <!-- movie title -->
         <p class="title">{{ item.title }}</p>
-        <p class="title">{{ item.name }}</p>
         <p class="original_title">{{ item.original_title }}</p>
+
+        <!-- serie title -->
+        <p class="title">{{ item.name }}</p>
         <p class="original_title">{{ item.original_name }}</p>
+
+        <!-- language -->
         <div class=" language">
             <p>{{ item.original_language }}</p>
             <img v-if="item.original_language === 'en' || item.original_language === 'it' || item.original_language === 'es'"
@@ -25,11 +30,16 @@ export default {
             <img v-else src="/public/earth_flag.svg" alt="earth flag" class="flag">
 
         </div>
+
+        <!-- vote -->
         <div class="vote_average">
             <font-awesome-icon v-for="n in Math.floor(item.vote_average / 2)" :icon="['fas', 'star']" />
             <font-awesome-icon v-for="n in (5 - Math.floor(item.vote_average / 2))" :icon="['far', 'star']" />
             <p class="vote_average_number">{{ item.vote_average }}</p>
         </div>
+
+        <!-- image -->
+        <img :src="'https://image.tmdb.org/t/p/w342' + item.poster_path" alt="film poster">
     </li>
 
 
