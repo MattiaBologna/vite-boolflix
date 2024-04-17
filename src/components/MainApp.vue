@@ -1,5 +1,5 @@
 <script>
-import FilmCard from './FilmCard.vue';
+import Card from './Card.vue';
 import { store } from '../store.js';
 
 export default {
@@ -11,7 +11,7 @@ export default {
     },
 
     components: {
-        FilmCard
+        Card
     }
 
 }
@@ -22,11 +22,12 @@ export default {
 <template>
 
     <main>
-        <ul class="film__list">
-            <li v-for="film in store.filmsObject.results" class="film">
-                <FilmCard :film="film" />
-            </li>
-        </ul>
+        <section>
+            <ul class="film__list" v-if="store.movies.length !== 0">
+                <Card :item="movie" v-for="movie in store.movies" class="film" :key="movie.id" />
+            </ul>
+            <p v-else>Nessun film</p>
+        </section>
     </main>
 
 </template>

@@ -1,24 +1,28 @@
 <script>
 import { store } from '../store.js';
+import axios from 'axios';
 
 export default {
 
     data() {
         return {
-            searchInput: '',
+            query: '',
             store
         }
     },
 
     methods: {
-        search() {
-            console.log('Hai cercato: ', this.searchInput)
 
-            // manda nello store il valore dell'input
-            store.searchInput = this.searchInput
-
-            // svuota l'input
-            this.searchInput = ''
+        fetchData() {
+            console.log('recupero dati di film')
+            axios.get(`https://api.themoviedb.org/3/search/movie`, {
+                params: {
+                    api_key: 'e99307154c6dfb0b4750f6603256716d',
+                    query: this.query
+                }
+            }).then((res) => {
+                store.movies = res.data.results
+            })
         }
     }
 
@@ -32,8 +36,8 @@ export default {
     <nav class="head__navbar">
         <div class="head__logo">BOOLFLIX</div>
         <div class="head__searchbar">
-            <input type="search" class="searchbar__input" v-model="searchInput" @keyup.enter="search">
-            <button @click="search" class="searchbar__button">Cerca</button>
+            <input type="text" class="searchbar__input" v-model="query" @keyup.enter="fetchData">
+            <button @click="fetchData" class="searchbar__button">Cerca</button>
         </div>
     </nav>
 </template>
