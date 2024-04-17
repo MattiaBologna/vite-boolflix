@@ -14,9 +14,11 @@ export default {
 
 <template>
     <li>
-        <p>{{ item.title }}</p>
-        <p>{{ item.original_title }}</p>
-        <div class="language">
+        <p class="title">{{ item.title }}</p>
+        <p class="title">{{ item.name }}</p>
+        <p class="original_title">{{ item.original_title }}</p>
+        <p class="original_title">{{ item.original_name }}</p>
+        <div class=" language">
             <p>{{ item.original_language }}</p>
             <img v-if="item.original_language === 'en' || item.original_language === 'it' || item.original_language === 'es'"
                 :src="'/public/' + item.original_language + '_flag.svg'" alt="usa flag" class="flag">
@@ -28,8 +30,8 @@ export default {
             <font-awesome-icon v-for="n in (5 - Math.floor(item.vote_average / 2))" :icon="['far', 'star']" />
             <p class="vote_average_number">{{ item.vote_average }}</p>
         </div>
-
     </li>
+
 
 </template>
 

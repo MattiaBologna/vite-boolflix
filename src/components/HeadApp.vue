@@ -14,7 +14,6 @@ export default {
     methods: {
 
         fetchData() {
-            console.log('recupero dati di film')
             axios.get(`https://api.themoviedb.org/3/search/movie`, {
                 params: {
                     api_key: 'e99307154c6dfb0b4750f6603256716d',
@@ -22,6 +21,17 @@ export default {
                 }
             }).then((res) => {
                 store.movies = res.data.results
+                console.log('movie: ', store.movies)
+            })
+
+            axios.get(`https://api.themoviedb.org/3/search/tv`, {
+                params: {
+                    api_key: 'e99307154c6dfb0b4750f6603256716d',
+                    query: this.query
+                }
+            }).then((res) => {
+                store.tvSeries = res.data.results
+                console.log('serie: ', store.tvSeries)
             })
         }
     }

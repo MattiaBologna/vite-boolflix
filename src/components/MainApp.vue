@@ -22,11 +22,20 @@ export default {
 <template>
 
     <main>
-        <section>
+        <section class="movies">
+            <h2>Movies</h2>
             <ul class="film__list" v-if="store.movies.length !== 0">
                 <Card :item="movie" v-for="movie in store.movies" class="film" :key="movie.id" />
             </ul>
             <p v-else>Nessun film</p>
+        </section>
+
+        <section class="tv_series">
+            <h2>Series</h2>
+            <ul class="tv_series_list" v-if="store.tvSeries.length !== 0">
+                <Card :item="serie" v-for="serie in store.tvSeries" class="film" :key="serie.id" />
+            </ul>
+            <p v-else>Nessuna serie</p>
         </section>
     </main>
 
