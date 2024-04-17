@@ -1,4 +1,5 @@
 <script>
+
 export default {
     props: {
         item: {
@@ -17,6 +18,7 @@ export default {
         <p>{{ item.original_title }}</p>
         <p>{{ item.original_language }}</p>
         <p>{{ item.vote_average }}</p>
+        <font-awesome-icon :icon="['fas', 'star']" />
     </li>
 
 </template>
