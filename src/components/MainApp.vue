@@ -23,7 +23,7 @@ export default {
 
     <main>
         <section class="movies">
-            <h2 class="section__title">Movies</h2>
+            <h2 class="section__title">Film</h2>
             <ul class="movie_list" v-if="store.movies.length !== 0">
                 <Card :item="movie" v-for="movie in store.movies" class="movie" :key="movie.id" />
             </ul>
@@ -31,7 +31,7 @@ export default {
         </section>
 
         <section class="tv_series">
-            <h2 class="section__title">Series</h2>
+            <h2 class="section__title">Serie TV</h2>
             <ul class="tv_series_list" v-if="store.tvSeries.length !== 0">
                 <Card :item="serie" v-for="serie in store.tvSeries" class="movie" :key="serie.id" />
             </ul>

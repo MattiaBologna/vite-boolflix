@@ -33,6 +33,9 @@ export default {
                 store.tvSeries = res.data.results
                 console.log('serie: ', store.tvSeries)
             })
+
+            // svuota la query 
+            this.query = ''
         }
     }
 
@@ -56,7 +59,9 @@ export default {
             </div>
         </div>
         <div class="head__searchbar">
-            <input type="text" class="searchbar__input" v-model="query" @keyup.enter="fetchData">
+            <input type="text" class="searchbar__input" placeholder="Titolo film o serie tv..." v-model="query"
+                @keyup.enter="fetchData">
+            <font-awesome-icon :icon="['fas', 'magnifying-glass']" class="searchbar__magnifying" />
             <button @click="fetchData" class="searchbar__button">Cerca</button>
         </div>
     </nav>
@@ -91,20 +96,27 @@ export default {
     display: flex;
     gap: 30px;
     font-weight: 400;
-    transition: text-shadow 0.3s ease;
 }
 
 .head__link:hover {
-    text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+    color: grey;
+}
+
+.head__searchbar {
+    position: relative;
 }
 
 .searchbar__input {
-    border-radius: 10px;
     padding: 10px;
     font-size: 1.1em;
+    color: white;
+    background-color: black;
+    border: none;
+    cursor: pointer;
 }
 
 .searchbar__input:focus {
+    border: white 1px solid;
     outline: none;
 }
 
@@ -116,5 +128,12 @@ export default {
     color: white;
     font-weight: 700;
     font-size: 1.1em;
+}
+
+.searchbar__magnifying {
+    color: white;
+    position: absolute;
+    transform: translateY(90%) translateX(-150%);
+    pointer-events: none;
 }
 </style>

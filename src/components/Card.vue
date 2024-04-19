@@ -67,6 +67,7 @@ export default {
     min-width: 342px;
     position: relative;
     max-height: 100%;
+    cursor: pointer;
 }
 
 .infos {
