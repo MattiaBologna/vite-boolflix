@@ -23,7 +23,7 @@ export default {
 
     <main>
         <section class="movies">
-            <h2>Movies</h2>
+            <h2 class="section__title">Movies</h2>
             <ul class="movie_list" v-if="store.movies.length !== 0">
                 <Card :item="movie" v-for="movie in store.movies" class="movie" :key="movie.id" />
             </ul>
@@ -31,7 +31,7 @@ export default {
         </section>
 
         <section class="tv_series">
-            <h2>Series</h2>
+            <h2 class="section__title">Series</h2>
             <ul class="tv_series_list" v-if="store.tvSeries.length !== 0">
                 <Card :item="serie" v-for="serie in store.tvSeries" class="movie" :key="serie.id" />
             </ul>
@@ -46,17 +46,31 @@ export default {
 <style lang="scss" scoped>
 main {
     padding: 40px;
-    background-color: grey;
+    background-color: #141414;
     flex-grow: 1;
+    color: white;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+.section__title {
+    margin-bottom: 30px;
+}
+
+.movie_list {
+    margin-bottom: 40px;
 }
 
 .movie_list,
 .tv_series_list {
     display: flex;
-    overflow: auto;
+    overflow-x: scroll;
+    overflow-y: hidden;
 }
 
 .movie {
-    padding: 20px
+    padding: 3px;
 }
 </style>

@@ -44,7 +44,17 @@ export default {
 
 <template>
     <nav class="head__navbar">
-        <div class="head__logo">BOOLFLIX</div>
+        <div class="logo_links_container">
+            <div class="head__logo">BOOLFLIX</div>
+            <div class="head__links">
+                <a class="head__link" href="#">Serie TV</a>
+                <a class="head__link" href="#">Home</a>
+                <a class="head__link" href="#">Film</a>
+                <a class="head__link" href="#">Nuovi e popolari</a>
+                <a class="head__link" href="#">La mia lista</a>
+                <a class="head__link" href="#">Sfoglia per lingua</a>
+            </div>
+        </div>
         <div class="head__searchbar">
             <input type="text" class="searchbar__input" v-model="query" @keyup.enter="fetchData">
             <button @click="fetchData" class="searchbar__button">Cerca</button>
@@ -61,14 +71,50 @@ export default {
     color: red;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    padding: 0px 50px;
+}
+
+.logo_links_container {
+    display: flex;
+    align-items: center;
+    gap: 100px;
 }
 
 .head__logo {
     font-size: 40px;
+    cursor: default;
+}
+
+.head__links {
+    color: white;
+    display: flex;
+    gap: 30px;
+    font-weight: 400;
+    transition: text-shadow 0.3s ease;
+}
+
+.head__link:hover {
+    text-shadow: 0 0 10px rgba(255, 255, 255, 1);
+}
+
+.searchbar__input {
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 1.1em;
+}
+
+.searchbar__input:focus {
+    outline: none;
 }
 
 .searchbar__button {
     margin-left: 10px;
+    border-radius: 5px;
+    padding: 10px 15px;
+    background-color: red;
+    color: white;
+    font-weight: 700;
+    font-size: 1.1em;
 }
 </style>

@@ -6,12 +6,6 @@ export default {
             type: Object,
             required: true
         }
-    },
-
-    data() {
-        return {
-            hover: false
-        }
     }
 }
 </script>
@@ -19,38 +13,48 @@ export default {
 
 
 <template>
-    <li class="card" @mouseover="hover = true" @mouseleave="hover = false">
+    <li class="card">
 
-        <div class="infos" v-if="hover">
+        <div class="infos">
             <!-- movie title -->
-            <p class="title">{{ item.title }}</p>
-            <p class="original_title">{{ item.original_title }}</p>
+            <div class="movie_title">
+                <p v-if="item.original_name === undefined" class="title"><strong>Title:</strong>{{ item.title }}</p>
+                <p v-else class="title"><strong>Title: </strong>{{ item.name }}</p>
+            </div>
 
             <!-- serie title -->
-            <p class="title">{{ item.name }}</p>
-            <p class="original_title">{{ item.original_name }}</p>
+            <div class="serie_title">
+                <p v-if="item.original_title === undefined" class="original_title"><strong>Original title: </strong>{{
+                    item.original_name }}</p>
+                <p v-else class="original_title"><strong>Original title:</strong> {{ item.original_title }}</p>
+            </div>
 
             <!-- language -->
             <div class=" language">
-                <p>{{ item.original_language }}</p>
+                <p><strong>Language:</strong></p>
                 <img v-if="item.original_language === 'en' || item.original_language === 'it' || item.original_language === 'es'"
-                    :src="'/public/' + item.original_language + '_flag.svg'" alt="usa flag" class="flag">
-                <img v-else src="/public/earth_flag.svg" alt="earth flag" class="flag">
+                    :src="'/' + item.original_language + '_flag.svg'" alt="usa flag" class="flag">
+                <img v-else src="/earth_flag.svg" alt="earth flag" class="flag">
 
             </div>
 
             <!-- vote -->
             <div class="vote_average">
+                <p class="vote_average_number"><strong>Vote:</strong></p>
                 <font-awesome-icon v-for="n in Math.floor(item.vote_average / 2)" :icon="['fas', 'star']" />
                 <font-awesome-icon v-for="n in (5 - Math.floor(item.vote_average / 2))" :icon="['far', 'star']" />
-                <p class="vote_average_number">{{ item.vote_average }}</p>
+            </div>
+
+            <!-- description -->
+            <div class="overview">
+                <p><strong>Overview: </strong>{{ item.overview }}</p>
             </div>
         </div>
 
         <!-- image -->
         <img v-if="item.poster_path !== null" :src="'https://image.tmdb.org/t/p/w342' + item.poster_path"
             alt="film poster" class="image">
-        <img v-else src="/public/def_image.jpg" alt="default image" class="def_image image">
+        <img v-else src="/public/def_image.svg" alt="default image" class="def_image image">
     </li>
 
 
@@ -61,24 +65,41 @@ export default {
 <style lang="scss" scoped>
 .card {
     min-width: 342px;
+    position: relative;
+    max-height: 100%;
 }
 
 .infos {
     color: white;
     position: absolute;
     max-width: 342px;
+    max-height: 100%;
+    overflow-y: auto;
+    opacity: 0;
+    z-index: 1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card:hover .infos {
+    opacity: 1;
+}
+
+.card:hover .image {
+    filter: blur(2px);
+    scale: (1.1);
 }
 
 .image {
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .vote_average {
     display: flex;
-
-    .vote_average_number {
-        margin-left: 15px;
-    }
 }
 
 .language {
@@ -93,6 +114,5 @@ export default {
 
 .def_image {
     width: 342px;
-    object-fit: cover;
 }
 </style>
