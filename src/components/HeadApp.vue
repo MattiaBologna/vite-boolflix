@@ -48,7 +48,7 @@ export default {
 <template>
     <nav class="head__navbar">
         <div class="logo_links_container">
-            <div class="head__logo">BOOLFLIX</div>
+            <img class="head__logo" src="/netflix_logo.svg" alt="netflix logo">
             <div class="head__links">
                 <a class="head__link" href="#">Serie TV</a>
                 <a class="head__link" href="#">Home</a>
@@ -78,6 +78,9 @@ export default {
     align-items: center;
     justify-content: space-between;
     padding: 0px 50px;
+    position: fixed;
+    z-index: 4;
+    width: 100%;
 }
 
 .logo_links_container {
@@ -87,8 +90,7 @@ export default {
 }
 
 .head__logo {
-    font-size: 40px;
-    cursor: default;
+    height: 50px;
 }
 
 .head__links {

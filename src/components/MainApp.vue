@@ -49,6 +49,7 @@ main {
     background-color: #141414;
     flex-grow: 1;
     color: white;
+    margin-top: 100px;
 }
 
 section {
